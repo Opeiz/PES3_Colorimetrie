@@ -16,15 +16,14 @@ def CreateFrames(video):
 cap = cv2.VideoCapture("media/Video.mp4")
 scale = 30
 
-CreateFrames("media/Video.mp4")
 
 # while cap.isOpened():
 #     ret, frame = cap.read()
 #     if not ret :
 #         break
-#     width = int(frame.shape[1] * scale/100)
-#     height = int(frame.shape[0] * scale/100)
-#     frame = cv2.resize(frame,(width,height))
+    # width = int(frame.shape[1] * scale/100)
+    # height = int(frame.shape[0] * scale/100)
+    # frame = cv2.resize(frame,(width,height))
 
 #     # Phase of Denoising
 #     frame = cv2.fastNlMeansDenoisingColored(frame,None,10,10,7,21)
