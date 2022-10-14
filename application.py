@@ -8,7 +8,7 @@ def CreateFrames(video):
     count = 0
 
     while success:
-        cv2.imwrite("frame%d.jpg" % count, image)     # save frame as JPEG file      
+        cv2.imwrite("frames/frame%d.jpg" % count, image)     # save frame as JPEG file      
         success,image = vidcap.read()
         print('Read a new frame: ', success)
         count += 1
@@ -16,23 +16,25 @@ def CreateFrames(video):
 cap = cv2.VideoCapture("media/Video.mp4")
 scale = 30
 
-while cap.isOpened():
-    ret, frame = cap.read()
-    if not ret :
-        break
-    width = int(frame.shape[1] * scale/100)
-    height = int(frame.shape[0] * scale/100)
-    frame = cv2.resize(frame,(width,height))
+CreateFrames("media/Video.mp4")
 
-    # Phase of Denoising
-    frame = cv2.fastNlMeansDenoisingColored(frame,None,10,10,7,21)
+# while cap.isOpened():
+#     ret, frame = cap.read()
+#     if not ret :
+#         break
+#     width = int(frame.shape[1] * scale/100)
+#     height = int(frame.shape[0] * scale/100)
+#     frame = cv2.resize(frame,(width,height))
 
-    cv2.imshow("frame",frame)
+#     # Phase of Denoising
+#     frame = cv2.fastNlMeansDenoisingColored(frame,None,10,10,7,21)
 
-    if cv2.waitKey(0) == ord('w'):
-        continue
-    if cv2.waitKey(0) == ord('q'):
-        break
+#     cv2.imshow("frame",frame)
 
-cap.release()
-cv2.destroyAllWindows()
+#     if cv2.waitKey(0) == ord('w'):
+#         continue
+#     if cv2.waitKey(0) == ord('q'):
+#         break
+
+# cap.release()
+# cv2.destroyAllWindows()
