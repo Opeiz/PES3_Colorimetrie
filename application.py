@@ -16,19 +16,6 @@ def CreateFrames(video):
 cap = cv2.VideoCapture("media/Video.mp4")
 scale = 30
 
-# alpha = 50
-# title_window = "Trackbar"
-
-# def on_trackbar(frame):
-#     hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
-#     cv2.add(hsv[::2], alpha, hsv[::2])
-#     frame = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
-#     cv2.imshow("frame",frame)
-
-# cv2.namedWindow(title_window)
-# trackbar_name = 'Alpha x %d' % alpha
-# cv2.createTrackbar(trackbar_name,title_window,0,alpha,on_trackbar)
-
 while cap.isOpened():
     ret, frame = cap.read()
     if not ret :
