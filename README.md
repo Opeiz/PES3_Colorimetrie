@@ -4,6 +4,7 @@ Github dedicated specifically to the post process of visualization of the images
 
 ## Diagram
 
+![alt text](/media/Diagram.png)
 <img src="/media/Diagram.png">
 
 ## Client
