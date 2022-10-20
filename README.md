@@ -4,9 +4,7 @@ Github dedicated specifically to the post process of visualization of the images
 
 ## Diagram
 
-<p>
-    <img src="media/image.png" width="680" height="420" />
-</p>
+<img src="media/image.png" width="680" height="420" />
 
 ## Client
 
