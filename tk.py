@@ -4,7 +4,15 @@ from cgi import test
 from tkinter import *
 from turtle import left
 from PIL import ImageTk, Image
-import cv2 
+import cv2
+import os
+
+# Some global parametres
+pathFrames = "frames/"
+allFrames = []
+start = 0
+
+numberFrames = len([entry for entry in os.listdir(pathFrames) if os.path.isfile(os.path.join(pathFrames, entry))])
 
 main = Tk()
 main.geometry("960x540")
@@ -12,39 +20,58 @@ main.title('Visionneuse Numérique')
 Label(main,text="Prévisualisation", font=('bold',12)).pack()
 
 # How to return to images
-pos = 34
-path = "frames/frame" + str(pos) + ".jpg"
-frame = Image.open(path)
-frame = frame.resize((760,340))
-last = ImageTk.PhotoImage(frame)
+def ListImages(numberFrames):
+    print("Starts procesing images")
+    for i in list(range(numberFrames)):
+        path = "frames/frame" + str(i) + ".jpg"
+        frame = Image.open(path)
+        frame = frame.resize((760,340))
+        last = ImageTk.PhotoImage(frame)
+        allFrames.append(last)
+    print("Finish procesing images")
+ListImages(numberFrames)
 
-def Forward():  
-    global pos
-    pos = pos + 1
-    try:
-        img_label.config(image = last)
-    except:  
-        pos = -1  
-        Forward()
+def Forward(img_no):
+ 
+    global label
+    global button_forward
+    global button_back
+    global button_exit 
 
-def Backward():  
-    global pos
-    global img_label
-    pos = pos - 1
-    try:
-        img_label.config(image = last)
-    except:  
-        pos = 0  
-        Backward()
+    label = Label(image=allFrames[img_no-1])
+
+    button_forward = Button(main, text="forward", command=lambda: Forward(img_no+1))
+ 
+    if img_no == numberFrames-1:
+        button_forward = Button(main, text="Forward", state=DISABLED)
+ 
+    button_back = Button(main, text="Back", command=lambda: Backward(img_no-1))
+
+def Backward(img_no):
+
+    global label
+    global button_forward
+    global button_back
+    global button_exit
+ 
+    label = Label(image=allFrames[img_no - 1])
+
+    button_forward = Button(main, text="forward",command= lambda: Forward(img_no + 1))
+    button_back = Button(main, text="Back",command= lambda: Backward(img_no - 1))
+ 
+    if img_no == start:
+        button_back = Button(main, Text="Back", state=DISABLED)
+ 
 
 
 Frames = Frame(main,width=960,height=540,bg='white')
 Frames.pack()
 
-img_label = Label(Frames, image = last)
-img_label.pack()
+# img_label = Label(Frames, image = last)
+label = Label(image=allFrames[start])
+label.pack()
 
-Button(main, text = 'Back', command = Backward, bg= 'light blue').place(x = 240, y = 50)  
-Button(main, text = 'Next', command = Forward, bg = 'light blue').place(x = 540, y = 50)  
+button_forward = Button(main, text = 'Next', command = lambda:Forward(start), bg = 'light blue').place(x = 540, y = 50)  
+button_back = Button(main, text = 'Back', command = lambda:Backward(start), bg= 'light blue').place(x = 240, y = 50)  
 
 main.mainloop()
