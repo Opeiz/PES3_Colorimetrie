@@ -31,35 +31,34 @@ def ListImages(numberFrames):
     print("Finish procesing images")
 ListImages(numberFrames)
 
-def Forward(img_no):
+def Forward(start):
  
     global label
     global button_forward
     global button_back
-    global button_exit 
 
-    label = Label(image=allFrames[img_no-1])
+    label = Label(image = allFrames[start-1])
 
-    button_forward = Button(main, text="forward", command=lambda: Forward(img_no+1))
- 
-    if img_no == numberFrames-1:
+    button_forward = Button(main, text="forward", command=lambda: Forward(start+1))
+    button_back = Button(main, text="Back", command=lambda: Backward(start-1))
+
+    print(start)
+    if start == numberFrames-1:
         button_forward = Button(main, text="Forward", state=DISABLED)
- 
-    button_back = Button(main, text="Back", command=lambda: Backward(img_no-1))
 
-def Backward(img_no):
+def Backward(start):
 
     global label
     global button_forward
     global button_back
-    global button_exit
  
-    label = Label(image=allFrames[img_no - 1])
+    label = Label(image = allFrames[start - 1])
 
-    button_forward = Button(main, text="forward",command= lambda: Forward(img_no + 1))
-    button_back = Button(main, text="Back",command= lambda: Backward(img_no - 1))
- 
-    if img_no == start:
+    button_forward = Button(main, text="forward",command= lambda: Forward(start + 1))
+    button_back = Button(main, text="Back",command= lambda: Backward(start - 1))
+
+    print(start)
+    if start == start:
         button_back = Button(main, Text="Back", state=DISABLED)
  
 
