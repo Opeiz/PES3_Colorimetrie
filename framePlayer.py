@@ -25,7 +25,6 @@ def forward(img_no):
     button_exit.grid(row=1, column=1)
     button_for.grid(row=1, column=2)
 
-
 def back(img_no):
 
     global button_forward
@@ -40,7 +39,6 @@ def back(img_no):
     button_back.grid(row=1, column=0)
     button_exit.grid(row=1, column=1)
     button_for.grid(row=1, column=2)
-
 
 root =Tk()
 
