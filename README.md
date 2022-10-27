@@ -6,6 +6,12 @@ Github dedicated specifically to the post process of visualization of the images
 
 <img src="media/image.png"/>
 
+## Instruccions about files
+
+ - application.py: File for all the colorimetry part, the idea is to implement this code in the different players
+ - framePlayer.py: File for the reading and change the video as frames
+ - videoPlayer.py: File for the reading and change the video as a video itself
+
 ## Client
 
  - Cinemateque de Bretagne
