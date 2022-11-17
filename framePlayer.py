@@ -13,7 +13,8 @@ def forward(img_no):
 
     global button_forward
     global button_back
-    global button_exit
+    global number
+    number = img_no
 
     callimage(img_no)
 
@@ -27,7 +28,8 @@ def back(img_no):
 
     global button_forward
     global button_back
-    global button_exit
+    global number
+    number = img_no
 
     callimage(img_no)
 
@@ -47,12 +49,15 @@ root.title("Visionneuse Numérique")
 root.resizable(0,0)
 
 # First Image to display
-callimage(0)
+number = 0
+callimage(number)
 
 # Buttons
 button_back = Button(root, text="Back",command=back, state= DISABLED).grid(row=3, column=0,padx=30,pady=8)  
-button_exit = Button(root, text="Exit", command=root.quit).grid(row=3, column=1)
-button_forward = Button(root, text="Forward", command=lambda: forward(1)).grid(row=3, column=2)
+button_forward = Button(root, text="Forward", command=lambda: forward(number+1)).grid(row=3, column=2)
+button_refesh = Button(root, text="Refresh", command=lambda: callimage(number)).grid(row=3, column=1)
+button_exit = Button(root, text="Exit", command=root.quit).grid(row=4, column=1)
+button_show = Button(root, text="Show", command=show_values).grid(row=4, column=0)
 
 red_label = Label(root, text="Red").grid(row=0, column=0)
 SliderR = Scale(root, from_=0 , to=100, orient=HORIZONTAL, length=300)
