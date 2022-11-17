@@ -8,13 +8,14 @@ def CreateFrames(video):
     count = 0
 
     while success:
-        cv2.imwrite("frames/frame%d.jpg" % count, image)     # save frame as JPEG file      
+        cv2.imwrite("colors/frame%d.jpg" % count, image)     # save frame as JPG file      
         success,image = vidcap.read()
         print('Read a new frame: ', success)
         count += 1
 
-cap = cv2.VideoCapture("media/Video.mp4")
-scale = 30
+CreateFrames("media/Color.mp4")
+
+# cap = cv2.VideoCapture("media/Color.mp4")
 
 
 # while cap.isOpened():
