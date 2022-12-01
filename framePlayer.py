@@ -41,12 +41,8 @@ def callimage(num):
     frame = cv2.imread(path)
     frame = cv2.resize(frame,(int(frame.shape[1]*0.4),int(frame.shape[0]*0.4)))
 
-    # brightness = alpha
-    # contrast = cont
-
-    # effect = controller(frame, brightness, contrast)
-
-    cv2.imshow("test",frame) 
+    cv2.imshow("Visionneuse",frame) 
+    return frame
 
 def forward(img_no):
 
@@ -81,6 +77,19 @@ def back(img_no):
 def show_values():
     print (SliderR.get(), SliderG.get(), SliderB.get())
 
+def refresh(num,algo):
+
+    algo = algo
+    print(algo)
+    frame = callimage(num)
+
+    b,g,r = cv2.split(frame)
+
+    # zeros = np.zeros(frame.shape[:2], dtype="uint8")
+    # cv2.imshow("B",cv2.merge([zeros, zeros, r]))
+    # cv2.imshow("G",cv2.merge([zeros, g, zeros]))
+    # cv2.imshow("R",cv2.merge([b, zeros, zeros]))
+    
 
 root =Tk()
 
@@ -95,7 +104,7 @@ callimage(number)
 # Buttons
 button_back = Button(root, text="Back",command=back, state= DISABLED).grid(row=3, column=0,padx=30,pady=8)  
 button_forward = Button(root, text="Forward", command=lambda: forward(number+1)).grid(row=3, column=2)
-button_refesh = Button(root, text="Refresh", command=lambda: callimage(number)).grid(row=3, column=1)
+button_refesh = Button(root, text="Refresh", command=lambda: refresh(number,algo=2)).grid(row=3, column=1)
 button_exit = Button(root, text="Exit", command=root.quit).grid(row=4, column=1,padx=30,pady=8)
 button_show = Button(root, text="Show", command=show_values).grid(row=4, column=0,padx=30,pady=8)
 
@@ -119,4 +128,4 @@ cont_label = Label(root, text="Contrast").grid(row=6, column=0)
 cont = Scale(root, from_=-127 , to=127, orient=HORIZONTAL, length=300)
 cont.grid(row=6, column=1, columnspan=2)
 
-root.mainloop()
+root.mainloop() 

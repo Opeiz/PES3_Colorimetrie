@@ -17,7 +17,6 @@ CreateFrames("media/Color.mp4")
 
 # cap = cv2.VideoCapture("media/Color.mp4")
 
-
 # while cap.isOpened():
 #     ret, frame = cap.read()
 #     if not ret :
