@@ -1,6 +1,8 @@
 from tkinter import *
 import cv2
 import numpy as np
+from PIL import Image, ImageTk
+import time, threading
 
 w,h = 640,480
 
@@ -10,8 +12,12 @@ def callimage(num):
     frame = cv2.imread(path)
     frame = cv2.resize(frame,(int(frame.shape[1]*0.4),int(frame.shape[0]*0.4)))
 
-    cv2.imshow("Visionneuse",frame) 
+    #cv2.imshow("Visionneuse",frame) 
     return frame
+
+# First Image to display
+number = 0
+ex_img = callimage(number)
 
 def forward(img_no):
 
@@ -47,7 +53,10 @@ def show_values():
     return (SliderR.get(), SliderG.get(), SliderB.get())
 
 def refresh(num):
-
+    global ex_img
+    global im
+    global imgtk
+    global imageViewed
     ValueR, ValueG, ValueB = show_values()
 
     frame = callimage(num)
@@ -57,7 +66,11 @@ def refresh(num):
     frame[frame<0] = 0
     frame = frame.astype("uint8")
         
-    cv2.imshow("Visionneuse",frame) 
+    #cv2.imshow("Visionneuse",frame)
+    ex_img = frame
+    im = Image.fromarray(ex_img)
+    imgtk = ImageTk.PhotoImage(image=im)
+    imageViewed = Label(root, image=imgtk).grid(row=0, column=3, rowspan=4, columnspan=4, padx=10, pady=5)
     
 def reset_Slider():
     SliderB.set(0)
@@ -70,9 +83,7 @@ root.title("Visionneuse Numérique")
 
 root.resizable(0,0)
 
-# First Image to display
-number = 0
-callimage(number)
+
 
 # Buttons
 button_back = Button(root, text="Back",command=back, state= DISABLED).grid(row=3, column=0,padx=30,pady=8)  
@@ -93,5 +104,15 @@ SliderB = Scale(root, from_=-255 , to=255, orient=HORIZONTAL, length=300)
 SliderB.grid(row=2, column=1, columnspan=2)
 
 button_reset = Button(root, text="Reset", command=lambda: reset_Slider()).grid(row=4, column=0,padx=30,pady=8)
+
+im = Image.fromarray(ex_img)
+imgtk = ImageTk.PhotoImage(image=im)
+imageViewed = Label(root, image=imgtk).grid(row=0, column=3, rowspan=4, columnspan=4, padx=10, pady=5)
+
+def run_film(fps):
+    forward(number+1)
+    threading.Timer(1/fps, lambda: run_film(fps)).start()
+
+run_film(16)
 
 root.mainloop()
