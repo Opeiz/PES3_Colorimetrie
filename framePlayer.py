@@ -7,7 +7,7 @@ def callimage(num):
 
     path = "frames/frame" + str(num) + ".jpg"
     frame = cv2.imread(path)
-    frame = cv2.resize(frame,(int(frame.shape[1]*0.5),int(frame.shape[0]*0.5)))
+    frame = cv2.resize(frame,(int(frame.shape[1]*0.3),int(frame.shape[0]*0.3)))
 
     cv2.imshow("Visionneuse",frame) 
     return frame
@@ -42,7 +42,12 @@ def back(img_no):
     button_back.grid(row=3, column=0)
     button_for.grid(row=3, column=2)
 
+def show_values():
+    return (SliderR.get(), SliderG.get(), SliderB.get())
+
 def refresh(num):
+
+    ValueR, ValueG, ValueB = show_values()
 
     frame = callimage(num)
     
@@ -58,7 +63,7 @@ def reset_Slider():
     SliderG.set(0)
     SliderR.set(0)
 
-root = ct.CTk()
+root =ct.CTk()
 
 root.title("Visionneuse Numérique")
 
@@ -75,15 +80,15 @@ button_refesh =     ct.CTkButton(master=root, text="Refresh", command=lambda: re
 button_exit =       ct.CTkButton(master=root, text="Exit", command=root.quit).grid(row=4, column=1,padx=30,pady=8)
 
 red_label =         ct.CTkLabel(master=root, text="Red").grid(row=0, column=0)
-SliderR =           ct.CTkSlider(master=root, from_=-255 , to=255, hover=True)
+SliderR =           ct.CTkSlider(master=root, from_=-120 , to=120, hover=True)
 SliderR.grid(row=0, column=1, columnspan=2)
 
 green_label =       ct.CTkLabel(master=root, text="Green").grid(row=1, column=0)
-SliderG =           ct.CTkSlider(master=root, from_=-255 , to=255)
+SliderG =           ct.CTkSlider(master=root, from_=-120 , to=120)
 SliderG.grid(row=1, column=1, columnspan=2)
 
 blue_label =        ct.CTkLabel(master=root, text="Blue").grid(row=2, column=0)
-SliderB =           ct.CTkSlider(master=root, from_=-255 , to=255)
+SliderB =           ct.CTkSlider(master=root, from_=-120 , to=120)
 SliderB.grid(row=2, column=1, columnspan=2)
 
 button_reset =      ct.CTkButton(master=root, text="Reset", command=lambda: reset_Slider()).grid(row=4, column=0,padx=30,pady=8)
