@@ -3,11 +3,13 @@ import customtkinter as ct
 import cv2
 import numpy as np
 
+
 def callimage(num):
 
-    path = "frames/frame" + str(num) + ".jpg"
+    path = "frames/frame" + str(num) + ".jpg" # Change frames to colors and viceversa, for RGB and BW tests
     frame = cv2.imread(path)
-    frame = cv2.resize(frame,(int(frame.shape[1]*0.3),int(frame.shape[0]*0.3)))
+    value = 0.3 # Value for the size of the output frame
+    frame = cv2.resize(frame,(int(frame.shape[1]*value),int(frame.shape[0]*value))) 
 
     cv2.imshow("Visionneuse",frame) 
     return frame

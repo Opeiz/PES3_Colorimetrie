@@ -6,11 +6,19 @@ Github dedicated specifically to the post process of visualization of the images
 
 <img src="media/image2.png"/>
 
-## Instruccions about files
+## Usage
+
+For using the main code is `./framePlayer.py` 
+
+## About files
 
  - application.py: File for all the colorimetry part, the idea is to implement this code in the different players
  - framePlayer.py: File for the reading and change the video as frames
  - videoPlayer.py: File for the reading and change the video as a video itself
+
+ - color folder: Has the frames of a standar RGB Video
+ - frames folder: Has the frames of a Black and White Video
+ - media folder: Has the diagram image and the original videos
 
 ## Client
 
