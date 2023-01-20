@@ -2,13 +2,13 @@
 
 Github dedicated specifically to the post process of visualization of the images, where the purpose of the code is to be able, mainly to visualize the 9.5mm film, and then to be able to vary both the colorimetry and the contrast and brightness. 
 
-## Diagram
-
-<img src="media/image2.png"/>
-
 ## Usage
 
 For using the main code is `./framePlayer.py` 
+
+## Diagram
+
+<img src="media/image2.png"/>
 
 ## About files
 
